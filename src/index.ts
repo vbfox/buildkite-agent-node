@@ -9,7 +9,7 @@ export interface AnnotateOptions {
 }
 
 export async function annotate(body: string, options?: AnnotateOptions) {
-    const args = [body];
+    const args = ['annotate', body];
     if (options?.context) {
         args.push('--context');
         args.push(options.context);
