@@ -1,0 +1,15 @@
+{
+  "name": "buildkite-agent-node",
+  "version": "0.0.1",
+  "description": "Access BuildKite agent commands from NodeJS",
+  "main": "dist/index.js",
+  "repository": "git@github.com:vbfox/buildkite-agent-node.git",
+  "author": "Julien Roncaglia <julien@roncaglia.fr>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^3.7.2"
+  },
+  "scripts": {
+    "build": "yarn tsc"
+  }
+}
