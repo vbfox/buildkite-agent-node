@@ -1,5 +1,2 @@
 
-interface Foo {
-    readonly bar: string;
-}
-console.log('foo');
+export default 'Hello world';
