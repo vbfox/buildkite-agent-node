@@ -1,4 +1,4 @@
-import spawnAsync from './spawnAsync';
+import spawnAsync, { SpawnResult } from './spawnAsync';
 
 export type AnnotationStyle = 'success' | 'info' | 'warning' | 'error';
 
@@ -22,5 +22,12 @@ export async function annotate(body: string, options?: AnnotateOptions) {
         args.push('--append');
     }
 
-    await spawnAsync('buildkite-agent', args);
+    try {
+        await spawnAsync('buildkite-agent', args);
+    }
+    catch (e) {
+        const r = e as SpawnResult;
+        console.log(r.stdout);
+        console.log(r.stderr);
+    }
 }
