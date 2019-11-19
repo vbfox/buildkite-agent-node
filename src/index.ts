@@ -1,5 +1,6 @@
 import { BuildKiteEnv, getEnv } from './env'
-import { AnnotationStyle, AnnotateOptions, annotate } from './commands/annotate';
+import { annotate } from './annotate/annotateCmd';
+import { AnnotationStyle, AnnotateOptions } from './annotate/annotateTypes';
 
 export {
     AnnotationStyle,
