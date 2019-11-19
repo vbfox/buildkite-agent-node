@@ -8,10 +8,14 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^12.12.9",
+    "@types/node-fetch": "^2.5.3",
     "typescript": "^3.7.2"
   },
   "scripts": {
     "build": "yarn tsc",
     "build-test": "yarn tsc test/test.ts"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.0"
   }
 }

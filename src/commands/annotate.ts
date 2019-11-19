@@ -1,6 +1,6 @@
 import spawnAsync, { SpawnResult } from "../spawnAsync";
 import { AGENT_BINARY } from "../consts";
-
+import fetch from 'node-fetch';
 export type AnnotationStyle = 'success' | 'info' | 'warning' | 'error';
 
 export interface AnnotateOptions {
@@ -39,4 +39,47 @@ export async function annotate(body: string, options?: AnnotateOptions) {
         console.log(r.stdout);
         console.log(r.stderr);
     }
+}
+
+interface AnnotationJson {
+    readonly body?: string;
+    readonly context?: string;
+    readonly style?: string;
+    readonly append?: boolean;
+}
+
+function getJson(body: string, options?: AnnotateOptions): AnnotationJson {
+    return {
+        body,
+        context: options?.context,
+        style: options?.style,
+        append: options?.append,
+    };    
+}
+
+const defaultEndpoint: 'https://agent.buildkite.com/;'
+const defaultUserAgent = 'buildkite-agent/api';
+
+interface ClientConfiguration {
+    readonly token: string;
+    readonly endpoint: string;
+    readonly userAgent: string;
+}
+
+async function fetchApi<TRequest, TResponse>(config: ClientConfiguration, method: 'GET' | 'POST', urlStr: string, body?: TRequest) : Promise<TResponse | undefined> {
+    const url = config.endpoint + urlStr;
+    const result = await fetch(
+        url, {
+        method,
+        body: body === undefined ? undefined : JSON.stringify(body),
+        headers: body === undefined ? undefined : { 'Content-Type': 'application/json' },
+    });
+    if (result.ok) {
+        return (await result.json()) as TResponse;
+    }
+}
+
+export async function annotateRest(config: ClientConfiguration, jobId: string, annotation: AnnotationJson) {
+    const url = `jobs/${jobId}/annotations`;
+    await fetchApi<AnnotationJson, any>(config, 'POST', url, annotation);
 }
