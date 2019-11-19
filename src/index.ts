@@ -1,5 +1,5 @@
 import spawnAsync, { SpawnResult } from './spawnAsync';
-
+import { BuildKiteEnv, getEnv } from './env'
 export type AnnotationStyle = 'success' | 'info' | 'warning' | 'error';
 
 export interface AnnotateOptions {
@@ -31,3 +31,5 @@ export async function annotate(body: string, options?: AnnotateOptions) {
         console.log(r.stderr);
     }
 }
+
+export { BuildKiteEnv, getEnv };
