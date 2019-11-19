@@ -1,3 +1,9 @@
+/**
+ * This code was initially forked from
+ * https://github.com/expo/spawn-async/blob/master/src/spawnAsync.ts
+ * Under MIT license
+ * Copyright (c) 2015 650 Industries
+ */
 import { ChildProcess, SpawnOptions as NodeSpawnOptions } from 'child_process';
 import { spawn } from 'child_process';
 
