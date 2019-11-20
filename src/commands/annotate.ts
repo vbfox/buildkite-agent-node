@@ -1,7 +1,18 @@
-import { AnnotateOptions } from "./annotateTypes";
 import { fetchApi } from "../api";
 import { resolveConfig, assertConfigIsComplete, ClientConfiguration } from "../config";
 import { isBuildKitePresent } from "../env";
+
+export type AnnotationStyle = 'success' | 'info' | 'warning' | 'error';
+
+export interface AnnotateOptions extends ClientConfiguration {
+    readonly context?: string;
+    readonly style?: AnnotationStyle;
+    readonly append?: boolean;
+}
+
+export type AnnotateFunction =
+    (body: string, options?: AnnotateOptions) => Promise<void>;
+
 
 interface AnnotationJson {
     readonly body?: string;
@@ -24,7 +35,7 @@ async function annotateRest(jobId: string, annotation: AnnotationJson, config: C
     await fetchApi<AnnotationJson, any>(config, 'POST', url, annotation);
 }
 
-export async function annotateApi(body: string, options?: AnnotateOptions) {
+export async function annotate(body: string, options?: AnnotateOptions) {
     if (!isBuildKitePresent()) {
         return;
     }

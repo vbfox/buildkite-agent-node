@@ -1,4 +1,4 @@
-import { annotate, annotateApi } from '../dist';
+import { annotate, } from '../dist';
 
 const testMsg = `# Build report
 
@@ -24,7 +24,7 @@ async function run() {
         style: 'info',
         context: 'First annotation'
     });
-    await annotateApi(testMsg, {
+    await annotate(testMsg, {
         style: 'success',
         context: 'Second annotation'
     });
