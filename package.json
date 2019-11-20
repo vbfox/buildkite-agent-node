@@ -14,7 +14,8 @@
   "scripts": {
     "build-lib": "yarn tsc",
     "build-test": "yarn tsc test/test.ts",
-    "build": "yarn build-lib && yarn build-test"
+    "build": "yarn build-lib && yarn build-test",
+    "prepublishOnly": "yarn build-lib"
   },
   "dependencies": {
     "node-fetch": "^2.6.0"
@@ -22,5 +23,13 @@
   "files": [
     "dist/**/*.js",
     "dist/**/*.d.ts"
+  ],
+  "directories": {
+    "lib": "dist"
+  },
+  "keywords": [
+    "buildkite",
+    "agent",
+    "ci"
   ]
 }
