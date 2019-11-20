@@ -12,8 +12,9 @@
     "typescript": "^3.7.2"
   },
   "scripts": {
-    "build": "yarn tsc",
-    "build-test": "yarn tsc test/test.ts"
+    "build-lib": "yarn tsc",
+    "build-test": "yarn tsc test/test.ts",
+    "build": "yarn build-lib && yarn build-test"
   },
   "dependencies": {
     "node-fetch": "^2.6.0"

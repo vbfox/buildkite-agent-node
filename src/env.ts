@@ -88,9 +88,10 @@ function getEnvList(key: string): readonly string[] | undefined {
 }
 
 function getFromEnv(): BuildKiteEnv {
+    const agentAccessToken = getEnvString('BUILDKITE_AGENT_ACCESS_TOKEN')
     return {
-        isPresent: getEnvBoolean('BUILDKITE') || false,
-        agentAccessToken: getEnvString('BUILDKITE_AGENT_ACCESS_TOKEN'),
+        isPresent: !!getEnvBoolean('BUILDKITE') && !!agentAccessToken,
+        agentAccessToken,
         debug: getEnvBoolean('BUILDKITE_AGENT_DEBUG'),
         agentEndpoint: getEnvString('BUILDKITE_AGENT_ENDPOINT'),
         experiments: getEnvList('BUILDKITE_AGENT_EXPERIMENT'),
@@ -139,4 +140,8 @@ export function getEnv() : BuildKiteEnv {
         environmentCache = getFromEnv();
     }
     return environmentCache;
+}
+
+export function isBuildKitePresent() {
+    return getEnv().isPresent;
 }

@@ -1,5 +1,7 @@
 import { AnnotateOptions } from "./annotateTypes";
-import { ClientConfiguration, fetchApi } from "../api";
+import { fetchApi } from "../api";
+import { resolveConfig, assertConfigIsComplete, ClientConfiguration } from "../config";
+import { isBuildKitePresent } from "../env";
 
 interface AnnotationJson {
     readonly body?: string;
@@ -17,7 +19,20 @@ function getJson(body: string, options?: AnnotateOptions): AnnotationJson {
     };
 }
 
-export async function annotateRest(config: ClientConfiguration, jobId: string, annotation: AnnotationJson) {
+async function annotateRest(jobId: string, annotation: AnnotationJson, config: ClientConfiguration) {
     const url = `jobs/${jobId}/annotations`;
     await fetchApi<AnnotationJson, any>(config, 'POST', url, annotation);
+}
+
+export async function annotateApi(body: string, options?: AnnotateOptions) {
+    if (!isBuildKitePresent()) {
+        return;
+    }
+    
+    const config = resolveConfig(options);
+    assertConfigIsComplete(config);
+
+    const json = getJson(body, options);
+
+    await annotateRest(config.jobId!, json, config);
 }

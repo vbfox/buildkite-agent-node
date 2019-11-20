@@ -1,19 +1,28 @@
-const defaultEndpoint = 'https://agent.buildkite.com/;'
-const defaultUserAgent = 'buildkite-agent/api';
+import { ClientConfiguration } from "./config";
 
-export interface ClientConfiguration {
-    readonly token: string;
-    readonly endpoint: string;
-    readonly userAgent: string;
-}
+export async function fetchApi<TRequest, TResponse>(
+    config: ClientConfiguration,
+    method: 'GET' | 'POST',
+    urlStr: string,
+    body?: TRequest) : Promise<TResponse | undefined> {
+    if (config.agentAccessToken === undefined || config.endpoint === undefined) {
+        throw new Error('Access token and endpoint need to be configured manually or via environment variables');
+    }
 
-export async function fetchApi<TRequest, TResponse>(config: ClientConfiguration, method: 'GET' | 'POST', urlStr: string, body?: TRequest) : Promise<TResponse | undefined> {
     const url = config.endpoint + urlStr;
+    const headers: any = {
+        'User-Agent': config?.userAgent,
+    }
+
+    if (body !== undefined) {
+        headers['Content-Type'] = 'application/json';
+    }
+
     const result = await fetch(
         url, {
         method,
         body: body === undefined ? undefined : JSON.stringify(body),
-        headers: body === undefined ? undefined : { 'Content-Type': 'application/json' },
+        headers,
     });
     if (result.ok) {
         return (await result.json()) as TResponse;

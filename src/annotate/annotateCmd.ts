@@ -1,10 +1,9 @@
 import spawnAsync, { SpawnResult } from "../spawnAsync";
-import { AGENT_BINARY } from "../binary";
-import fetch from 'node-fetch';
+import { AGENT_BINARY, getClientConfigurationArgs } from "../binary";
 import { AnnotateOptions } from "./annotateTypes";
 
 function getArgs(body: string, options?: AnnotateOptions): string[] {
-    const args = ['annotate', body];
+    const args = ['annotate', body, ...getClientConfigurationArgs(options)];
     if (options?.context) {
         args.push('--context');
         args.push(options.context);
