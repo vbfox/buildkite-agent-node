@@ -12,19 +12,20 @@ export async function fetchApi<TRequest, TResponse>(
 
     const url = config.endpoint + urlStr;
     const headers: any = {
-        'User-Agent': config?.userAgent,
+        'User-Agent': config.userAgent,
+        'Authorization': 'Token ' + config.agentAccessToken
     }
 
     if (body !== undefined) {
         headers['Content-Type'] = 'application/json';
     }
-
     const result = await fetch(
         url, {
         method,
         body: body === undefined ? undefined : JSON.stringify(body),
         headers,
     });
+    console.log(result);
     if (result.ok) {
         return (await result.json()) as TResponse;
     }
