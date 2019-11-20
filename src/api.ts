@@ -1,4 +1,5 @@
 import { ClientConfiguration } from "./config";
+import fetch from 'node-fetch';
 
 export async function fetchApi<TRequest, TResponse>(
     config: ClientConfiguration,
