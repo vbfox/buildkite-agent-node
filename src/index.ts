@@ -1,4 +1,4 @@
-import { BuildKiteEnv, getEnv } from './env'
+import { BuildkiteEnv, getBuildkiteEnv, isBuildkitePresent } from './env'
 import { AnnotationStyle, AnnotateOptions, annotate } from './commands/annotate';
 
 export {
@@ -6,6 +6,7 @@ export {
     AnnotateOptions,
     annotate,
     
-    BuildKiteEnv,
-    getEnv
+    BuildkiteEnv,
+    getBuildkiteEnv,
+    isBuildkitePresent
 };

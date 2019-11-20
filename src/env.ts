@@ -1,4 +1,4 @@
-export interface BuildKiteEnv {
+export interface BuildkiteEnv {
     /** Get if BuildKite is present */
     isPresent: boolean;
     /** The agent session token for the job */
@@ -87,7 +87,7 @@ function getEnvList(key: string): readonly string[] | undefined {
     return stringValue.split(',');
 }
 
-function getFromEnv(): BuildKiteEnv {
+function getFromEnv(): BuildkiteEnv {
     const agentAccessToken = getEnvString('BUILDKITE_AGENT_ACCESS_TOKEN')
     return {
         isPresent: !!getEnvBoolean('BUILDKITE') && !!agentAccessToken,
@@ -133,15 +133,15 @@ function getFromEnv(): BuildKiteEnv {
     }
 }
 
-let environmentCache : BuildKiteEnv | undefined;
+let environmentCache : BuildkiteEnv | undefined;
 
-export function getEnv() : BuildKiteEnv {
+export function getBuildkiteEnv() : BuildkiteEnv {
     if (environmentCache === undefined) {
         environmentCache = getFromEnv();
     }
     return environmentCache;
 }
 
-export function isBuildKitePresent() {
-    return getEnv().isPresent;
+export function isBuildkitePresent() {
+    return getBuildkiteEnv().isPresent;
 }

@@ -1,4 +1,4 @@
-import { getEnv } from "./env";
+import { getBuildkiteEnv } from "./env";
 
 const defaultEndpoint = 'https://agent.buildkite.com/;'
 const defaultUserAgent = 'buildkite-agent/api';
@@ -27,7 +27,7 @@ export function assertConfigIsComplete(config: ClientConfiguration) {
 }
 
 function getEnvConfig(): ClientConfiguration {
-    const env = getEnv();
+    const env = getBuildkiteEnv();
     return {
         agentAccessToken: env.isPresent ? env.agentAccessToken : undefined,
         endpoint: env.agentEndpoint || defaultEndpoint,

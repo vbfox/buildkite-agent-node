@@ -1,6 +1,6 @@
 import { fetchApi } from "../api";
 import { resolveConfig, assertConfigIsComplete, ClientConfiguration } from "../config";
-import { isBuildKitePresent } from "../env";
+import { isBuildkitePresent } from "../env";
 
 export type AnnotationStyle = 'success' | 'info' | 'warning' | 'error';
 
@@ -36,7 +36,7 @@ async function annotateRest(jobId: string, annotation: AnnotationJson, config: C
 }
 
 export async function annotate(body: string, options?: AnnotateOptions) {
-    if (!isBuildKitePresent()) {
+    if (!isBuildkitePresent()) {
         return;
     }
     
