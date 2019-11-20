@@ -10,7 +10,8 @@ export async function fetchApi<TRequest, TResponse>(
         throw new Error('Access token and endpoint need to be configured manually or via environment variables');
     }
 
-    const url = config.endpoint + urlStr;
+    const additionalSlash = config.endpoint.endsWith('/') ? '' : '/';
+    const url = config.endpoint + additionalSlash + urlStr;
     const headers: any = {
         'User-Agent': config.userAgent,
         'Authorization': 'Token ' + config.agentAccessToken
