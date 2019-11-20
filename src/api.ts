@@ -27,7 +27,9 @@ export async function fetchApi<TRequest, TResponse>(
         headers,
     });
     console.log(result);
-    if (result.ok) {
+    if (result.ok && result.status === 200) {
         return (await result.json()) as TResponse;
+    } else {
+        throw new Error(`Request failed with ${result.status}: ${result.statusText}`);
     }
 }
