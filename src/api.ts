@@ -26,7 +26,7 @@ export async function fetchApi<TRequest, TResponse>(
         body: body === undefined ? undefined : JSON.stringify(body),
         headers,
     });
-    console.log(result);
+    
     if (result.ok && result.status === 200) {
         return (await result.json()) as TResponse;
     } else {
