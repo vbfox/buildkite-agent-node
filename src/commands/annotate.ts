@@ -1,18 +1,19 @@
 import { fetchApi } from "../api";
-import { resolveConfig, assertConfigIsComplete, ClientConfiguration } from "../config";
+import { resolveConfig, assertConfigIsComplete, ClientConfiguration, shouldSkipCommand } from "../config";
 import { isBuildkitePresent } from "../env";
 
-export type AnnotationStyle = 'success' | 'info' | 'warning' | 'error';
+export enum AnnotationStyle {
+    Success = 'success',
+    Info = 'info',
+    Warning = 'warning',
+    Error = 'error',
+}
 
 export interface AnnotateOptions extends ClientConfiguration {
     readonly context?: string;
     readonly style?: AnnotationStyle;
     readonly append?: boolean;
 }
-
-export type AnnotateFunction =
-    (body: string, options?: AnnotateOptions) => Promise<void>;
-
 
 interface AnnotationJson {
     readonly body?: string;
@@ -30,13 +31,13 @@ function getJson(body: string, options?: AnnotateOptions): AnnotationJson {
     };
 }
 
-async function annotateRest(jobId: string, annotation: AnnotationJson, config: ClientConfiguration) {
+function annotateRest(jobId: string, annotation: AnnotationJson, config: ClientConfiguration) {
     const url = `jobs/${jobId}/annotations`;
-    await fetchApi<AnnotationJson, any>(config, 'POST', url, annotation);
+    return fetchApi<AnnotationJson, any>(config, 'POST', url, annotation);
 }
 
-export async function annotate(body: string, options?: AnnotateOptions) {
-    if (!isBuildkitePresent()) {
+export async function annotate(body: string, options?: AnnotateOptions): Promise<void> {
+    if (shouldSkipCommand(options)) {
         return;
     }
     
