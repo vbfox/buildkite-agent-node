@@ -1,4 +1,4 @@
-import { annotate, } from '../dist';
+import { annotate, AnnotationStyle } from '../dist';
 
 const testMsg = `# Build report
 
@@ -21,11 +21,11 @@ const testMsg = `# Build report
 
 async function run() {
     await annotate('Hello **World**', {
-        style: 'info',
+        style: AnnotationStyle.Info,
         context: 'First annotation'
     });
     await annotate(testMsg, {
-        style: 'success',
+        style: AnnotationStyle.Success,
         context: 'Second annotation'
     });
 }
