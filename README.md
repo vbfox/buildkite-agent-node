@@ -36,4 +36,4 @@ annotate('Hello world 👋!', {
 
 ## License
 
-This project is under the MIT license.
+This project is using the [MIT](LICENSE) license.
