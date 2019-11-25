@@ -1,4 +1,4 @@
-# buildkite-agent-node
+# `buildkite-agent` for Node.js
 
 [![Build Status](https://vbfox.visualstudio.com/buildkite-agent-node/_apis/build/status/vbfox.buildkite-agent-node?branchName=master)](https://vbfox.visualstudio.com/buildkite-agent-node/_build/latest?definitionId=15&branchName=master) [![npm](https://img.shields.io/npm/v/buildkite-agent-node)](https://www.npmjs.com/package/buildkite-agent-node)
 
