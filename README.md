@@ -1,5 +1,7 @@
 # buildkite-agent-node
 
+[![Build Status](https://vbfox.visualstudio.com/buildkite-agent-node/_apis/build/status/vbfox.buildkite-agent-node?branchName=master)](https://vbfox.visualstudio.com/buildkite-agent-node/_build/latest?definitionId=15&branchName=master) [![npm](https://img.shields.io/npm/v/buildkite-agent-node)](https://www.npmjs.com/package/buildkite-agent-node)
+
 Access [Buildkite](https://buildkite.com/) agent commands from Node.js
 
 The `buildkite-agent` binary has 2 roles: running builds and communicating additional information (Annotations, artifacts, ...) from a build to the agent running the build.
