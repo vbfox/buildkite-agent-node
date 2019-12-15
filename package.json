@@ -17,7 +17,9 @@
     "build-lib": "yarn tsc",
     "build-test": "yarn tsc test/test.ts",
     "build": "yarn build-lib && yarn build-test",
-    "prepublishOnly": "yarn build-lib"
+    "prepublishOnly": "yarn build-lib",
+    "preversion": "yarn build",
+    "postversion": "git push && git push --tags"
   },
   "dependencies": {
     "glob": "^7.1.6",
