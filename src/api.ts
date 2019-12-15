@@ -1,6 +1,6 @@
 import { ClientConfiguration } from "./config";
 import fetch from 'node-fetch';
-import VError from "verror";
+import * as VError from "verror";
 
 export async function fetchApi<TRequest, TResponse>(
     config: ClientConfiguration,
