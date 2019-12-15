@@ -1,6 +1,6 @@
 import { getBuildkiteEnv, isBuildkitePresent } from "./env";
 
-const defaultEndpoint = 'https://agent.buildkite.com/';
+const defaultEndpoint = 'https://agent.buildkite.com/v3';
 const defaultUserAgent = 'buildkite-agent/api';
 
 export interface ClientConfiguration {
