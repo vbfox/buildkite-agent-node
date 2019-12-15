@@ -1,5 +1,6 @@
 import { ClientConfiguration } from "./config";
 import fetch from 'node-fetch';
+import VError from "verror";
 
 export async function fetchApi<TRequest, TResponse>(
     config: ClientConfiguration,
@@ -20,16 +21,21 @@ export async function fetchApi<TRequest, TResponse>(
     if (body !== undefined) {
         headers['Content-Type'] = 'application/json';
     }
-    const result = await fetch(
-        url, {
-        method,
-        body: body === undefined ? undefined : JSON.stringify(body),
-        headers,
-    });
-    
-    if (result.ok && result.status === 200) {
-        return (await result.json()) as TResponse;
-    } else {
-        throw new Error(`Request failed with ${result.status}: ${result.statusText}`);
+
+    try {
+        const result = await fetch(
+            url, {
+            method,
+            body: body === undefined ? undefined : JSON.stringify(body),
+            headers,
+        });
+        
+        if (result.ok && result.status === 200) {
+            return (await result.json()) as TResponse;
+        } else {
+            throw new Error(`Request failed with ${result.status}: ${result.statusText}`);
+        }
+    } catch(error) {
+        throw new VError(error, '%s request to Buildkite at \'%s\' failed', method, url);
     }
 }

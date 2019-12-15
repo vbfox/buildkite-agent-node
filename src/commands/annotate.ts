@@ -1,6 +1,5 @@
 import { fetchApi } from "../api";
 import { resolveConfig, assertConfigIsComplete, ClientConfiguration, shouldSkipCommand } from "../config";
-import { isBuildkitePresent } from "../env";
 
 export enum AnnotationStyle {
     Success = 'success',
