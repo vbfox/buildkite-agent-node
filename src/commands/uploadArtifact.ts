@@ -1,5 +1,5 @@
 import { ClientConfiguration } from "../config";
-import { v4 } from 'node-uuid';
+import { v4 } from 'uuid';
 
 interface ArtifactJson {
 	// The path to the artifact relative to the working directory
