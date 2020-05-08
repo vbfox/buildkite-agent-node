@@ -1,4 +1,4 @@
-name: Build library
+name: CI
 
 on:
   push:
@@ -24,3 +24,7 @@ jobs:
     - run: yarn install
     - run: yarn build
     - run: yarn pack
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        path: '*.tgz'
