@@ -6,18 +6,20 @@
   "repository": "https://github.com/vbfox/buildkite-agent-node",
   "author": "Julien Roncaglia <julien@roncaglia.fr>",
   "license": "MIT",
+  "source": "src/index.ts",
   "devDependencies": {
     "@types/glob": "^7.1.1",
     "@types/node": "^12.12.9",
     "@types/node-fetch": "^2.5.3",
     "@types/uuid": "^7.0",
     "@types/verror": "^1.10.3",
+    "microbundle": "^0.12.0-next.9",
     "typescript": "^3.7.2"
   },
   "scripts": {
-    "build-lib": "yarn tsc",
-    "build-test": "yarn tsc test/test.ts",
-    "build": "yarn build-lib && yarn build-test",
+    "build-lib": "yarn run -s microbundle -f cjs",
+    "build-test": "yarn run -s tsc test/test.ts",
+    "build": "yarn run -s build-lib && yarn run -s build-test",
     "prepublishOnly": "yarn build-lib",
     "preversion": "yarn build",
     "postversion": "git push && git push --tags"
