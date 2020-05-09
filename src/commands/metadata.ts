@@ -46,7 +46,7 @@ function setMetadataRest(jobId: string, value: MetaData, config: ClientConfigura
     return fetchApi<MetaData, void>(config, 'POST', url, value);
 }
 
-export async function setMetadata(key: string, value: string, options?: SetMetatadaOptions): Promise<string | undefined> {
+export async function setMetadata(key: string, value: string, options?: SetMetatadaOptions): Promise<void> {
     if (shouldSkipCommand(options)) {
         return;
     }
