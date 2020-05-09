@@ -1,14 +1,25 @@
 import { ClientConfiguration } from "./config";
-import fetch from 'node-fetch';
-import * as VError from "verror";
+import fetch, { Response } from 'node-fetch';
+
+export class FetchApiError extends Error {
+    readonly cause?: any;
+    readonly result?: Response;
+
+    constructor(message: string, cause?: any, result?: Response) {
+        super(message);
+        this.name = 'FetchError';
+        this.cause = cause;
+        this.result = result;
+    }
+}
 
 export async function fetchApi<TRequest, TResponse>(
     config: ClientConfiguration,
     method: 'GET' | 'POST',
     urlStr: string,
-    body?: TRequest) : Promise<TResponse | undefined> {
+    body?: TRequest) : Promise<TResponse> {
     if (config.agentAccessToken === undefined || config.endpoint === undefined) {
-        throw new Error('Access token and endpoint need to be configured manually or via environment variables');
+        throw new FetchApiError('Access token and endpoint need to be configured manually or via environment variables');
     }
 
     const additionalSlash = config.endpoint.endsWith('/') ? '' : '/';
@@ -22,20 +33,32 @@ export async function fetchApi<TRequest, TResponse>(
         headers['Content-Type'] = 'application/json';
     }
 
+    let result: Response;
+
     try {
-        const result = await fetch(
+        result = await fetch(
             url, {
             method,
             body: body === undefined ? undefined : JSON.stringify(body),
             headers,
         });
-        
-        if (result.ok && result.status === 200) {
-            return (await result.json()) as TResponse;
-        } else {
-            throw new Error(`Request failed with ${result.status}: ${result.statusText}`);
-        }
     } catch(error) {
-        throw new VError(error, '%s request to Buildkite at \'%s\' failed', method, url);
+        throw new FetchApiError(`${method} request to Buildkite at \'${url}\' failed: ${error.message}`, error);
+    }
+
+    if (result.ok && result.status === 200) {
+        try {
+            const json = await result.json();
+            return json as TResponse;
+        } catch (error) {
+            throw new FetchApiError(`${method} request to Buildkite at \'${url}\' failed `
+            + `during json(): ${error.message}`,error, result);
+        }
+    } else {
+        throw new FetchApiError(
+            `${method} request to Buildkite at \'${url}\' failed with non 200 result: `
+            + `${result.status} ${result.statusText}`,
+            undefined,
+            result);
     }
 }

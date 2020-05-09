@@ -1,5 +1,14 @@
 steps:
   - label: "📦 Build"
+    key: "build"
     command: .buildkite/buildkite.sh
+
   - label: "Annotations"
+    key: "annotations"
+    depends_on: "build"
     command: .buildkite/annotations.sh
+
+  - label: "Metadata"
+    key: "metadata"
+    depends_on: "build"
+    command: .buildkite/metadata.sh

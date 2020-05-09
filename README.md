@@ -4,7 +4,7 @@
 
 Access [Buildkite](https://buildkite.com/) agent commands from Node.js
 
-The `buildkite-agent` binary has 2 roles: running builds and communicating additional information (Annotations, artifacts, ...) from a build to the agent running the build.
+The [`buildkite-agent`](https://github.com/buildkite/agent) binary has 2 roles: running builds and communicating additional information (Annotations, artifacts, ...) from a build to the agent running the build.
 
 This project target is to provide access to the second set of commands from Node.js without needing the agent binary.
 

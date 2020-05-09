@@ -36,8 +36,14 @@ function getEnvConfig(): ClientConfiguration {
     }
 }
 
-export function resolveConfig(config: ClientConfiguration | undefined) {
-    return { ...getEnvConfig(), config };
+export function resolveConfig(config: ClientConfiguration | undefined): ClientConfiguration {
+    return { ...getEnvConfig(), ...config };
+}
+
+export function resolveAndAssertComplete(config: ClientConfiguration | undefined): ClientConfiguration {
+    const resolved = resolveConfig(config);
+    assertConfigIsComplete(resolved);
+    return resolved;
 }
 
 export function shouldSkipCommand(config: ClientConfiguration | undefined) {

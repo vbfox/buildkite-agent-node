@@ -12,7 +12,6 @@
     "@types/node": "^13.13.5",
     "@types/node-fetch": "^2.5.3",
     "@types/uuid": "^7.0",
-    "@types/verror": "^1.10.3",
     "microbundle": "^0.12.0-next.9",
     "typescript": "^3.7.2"
   },
@@ -27,8 +26,7 @@
   "dependencies": {
     "glob": "^7.1.6",
     "node-fetch": "^2.6.0",
-    "uuid": "^8.0.0",
-    "verror": "^1.10.0"
+    "uuid": "^8.0.0"
   },
   "files": [
     "dist/**/*.js",

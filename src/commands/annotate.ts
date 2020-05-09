@@ -1,5 +1,5 @@
 import { fetchApi } from "../api";
-import { resolveConfig, assertConfigIsComplete, ClientConfiguration, shouldSkipCommand } from "../config";
+import { ClientConfiguration, shouldSkipCommand, resolveAndAssertComplete } from "../config";
 
 export enum AnnotationStyle {
     Success = 'success',
@@ -21,7 +21,7 @@ interface AnnotationJson {
     readonly append?: boolean;
 }
 
-function getJson(body: string, options?: AnnotateOptions): AnnotationJson {
+function getInput(body: string, options?: AnnotateOptions): AnnotationJson {
     return {
         body,
         context: options?.context,
@@ -40,10 +40,9 @@ export async function annotate(body: string, options?: AnnotateOptions): Promise
         return;
     }
     
-    const config = resolveConfig(options);
-    assertConfigIsComplete(config);
+    const config = resolveAndAssertComplete(options);
 
-    const json = getJson(body, options);
+    const input = getInput(body, options);
 
-    await annotateRest(config.jobId!, json, config);
+    await annotateRest(config.jobId!, input, config);
 }
