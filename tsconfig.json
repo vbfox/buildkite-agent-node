@@ -4,10 +4,16 @@
         "module": "ES2015",
         "moduleResolution": "node",
         "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
         "strict": true,
         "removeComments": false,
         "outDir": "dist",
-        "declaration": true
+        "declaration": true,
+        "esModuleInterop": true,
     },
     "include": ["src"]
 }
