@@ -6,13 +6,13 @@ test('getMetadata return undefined when not existing', async () => {
 });
 
 test('get and set metadata work', async () => {
-    setMetadata('my-metadata', 'foo bar');
+    await setMetadata('my-metadata', 'foo bar');
     const myMetadataValue = await getMetadata('my-metadata');
     expect(myMetadataValue).toEqual('foo bar');
 });
 
 test('getMetadataKeys to return a previously set value', async () => {
-    setMetadata('my-metadata-2', 'foo bar');
+    await setMetadata('my-metadata-2', 'foo bar');
     const keys = await getMetadataKeys();
     expect(keys).toContain('my-metadata-2');
 });
