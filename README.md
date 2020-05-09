@@ -1,6 +1,6 @@
 # `buildkite-agent` for Node.js
 
-[![Build Status](https://vbfox.visualstudio.com/buildkite-agent-node/_apis/build/status/vbfox.buildkite-agent-node?branchName=master)](https://vbfox.visualstudio.com/buildkite-agent-node/_build/latest?definitionId=15&branchName=master) [![npm](https://img.shields.io/npm/v/buildkite-agent-node)](https://www.npmjs.com/package/buildkite-agent-node)
+[![CI](https://github.com/vbfox/buildkite-agent-node/workflows/CI/badge.svg)](https://github.com/vbfox/buildkite-agent-node/actions?query=workflow%3ACI) [![npm](https://img.shields.io/npm/v/buildkite-agent-node)](https://www.npmjs.com/package/buildkite-agent-node)
 
 Access [Buildkite](https://buildkite.com/) agent commands from Node.js
 
