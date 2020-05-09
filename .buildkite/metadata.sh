@@ -3,4 +3,4 @@ buildkite-agent artifact download compiled.tgz .
 tar -xzf compiled.tgz
 
 # Run tests
-node .buildkite/tests/metadata.js
+yarn run -s jest --runInBand .buildkite/tests/metadata.test.ts
