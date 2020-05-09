@@ -1,4 +1,4 @@
-import { annotate, AnnotationStyle } from '../dist';
+import { annotate, AnnotationStyle } from '../../dist';
 
 const testMsg = `# Build report
 
