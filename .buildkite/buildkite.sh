@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+buildkite-agent pipeline upload --dry-run
+
 yarn install
 
 yarn run -s build
