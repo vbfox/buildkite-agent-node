@@ -15,7 +15,8 @@ The library is currently in development without any stable release and only a sm
 * [x] [`annotate`](https://buildkite.com/docs/agent/v3/cli-annotate)
 * [ ] [`artifact`](https://buildkite.com/docs/agent/v3/cli-artifact)
 * [x] [`meta-data`](https://buildkite.com/docs/agent/v3/cli-meta-data)
-* [ ] [`pipeline`](https://buildkite.com/docs/agent/v3/cli-pipeline) 
+* [x] [`pipeline`](https://buildkite.com/docs/agent/v3/cli-pipeline)
+  * [ ] Interpolation
 
 ## Examples
 

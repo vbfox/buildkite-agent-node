@@ -28,7 +28,8 @@
   "dependencies": {
     "glob": "^7.1.6",
     "node-fetch": "^2.6.0",
-    "uuid": "^8.0.0"
+    "uuid": "^8.0.0",
+    "yaml": "^1.9.2"
   },
   "files": [
     "dist/**/*.js",

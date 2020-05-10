@@ -26,3 +26,8 @@ export {
     GetMetatadaKeysOptions,
     getMetadataKeys,
 } from './commands/metadata'
+
+export {
+    UploadPipelineOptions,
+    uploadPipeline
+} from './commands/pipeline';
