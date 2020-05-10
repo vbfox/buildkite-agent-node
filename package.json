@@ -20,8 +20,7 @@
   },
   "scripts": {
     "build-lib": "yarn run -s microbundle -f cjs",
-    "build-test": "yarn run -s tsc .buildkite/tests/*.ts",
-    "build": "yarn run -s build-lib && yarn run -s build-test",
+    "build": "yarn run -s build-lib",
     "prepublishOnly": "yarn build-lib",
     "preversion": "yarn build",
     "postversion": "git push && git push --tags"

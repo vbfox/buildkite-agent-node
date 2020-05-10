@@ -1,4 +1,4 @@
-import { annotate, AnnotationStyle } from '../../dist';
+import { annotate, AnnotationStyle } from '../../src';
 
 const testMsg = `# Build report
 
@@ -19,15 +19,16 @@ const testMsg = `# Build report
 \`\`\`
 `;
 
-async function run() {
+test('hello world', async () => {
     await annotate('Hello **World**', {
         style: AnnotationStyle.Info,
         context: 'First annotation'
     });
+});
+
+test('complex markdown', async () => {
     await annotate(testMsg, {
         style: AnnotationStyle.Success,
         context: 'Second annotation'
     });
-}
-
-run();
+});

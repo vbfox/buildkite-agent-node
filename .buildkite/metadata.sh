@@ -1,7 +1,7 @@
 #!/bin/bash
 
+# Setup
 set -euo pipefail
-
 source '.buildkite/shared.sh'
 setup_test
 

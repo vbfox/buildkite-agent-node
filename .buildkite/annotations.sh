@@ -1,9 +1,9 @@
 #!/bin/bash
 
+# Setup
 set -euo pipefail
-
 source '.buildkite/shared.sh'
 setup_test
 
 # Run tests
-node .buildkite/tests/annotations.js
+yarn run -s jest --runInBand .buildkite/tests/annotations.test.ts
