@@ -1,3 +1,7 @@
+#!/bin/bash
+
+set -euo pipefail
+
 yarn install
 
 yarn run -s build
