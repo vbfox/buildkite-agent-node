@@ -19,7 +19,7 @@
     "typescript": "^3.7.2"
   },
   "scripts": {
-    "build-lib": "yarn run -s microbundle -f cjs",
+    "build-lib": "yarn run -s microbundle -f cjs --target node",
     "build": "yarn run -s build-lib",
     "prepublishOnly": "yarn build-lib",
     "preversion": "yarn build",
