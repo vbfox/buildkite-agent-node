@@ -1,6 +1,6 @@
 {
   "name": "buildkite-agent-node",
-  "version": "0.0.11-pre.1",
+  "version": "0.0.11-pre.2",
   "description": "Access BuildKite agent commands from NodeJS",
   "main": "dist/index.js",
   "repository": "https://github.com/vbfox/buildkite-agent-node",
